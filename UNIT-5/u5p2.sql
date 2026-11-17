@@ -1,0 +1,9 @@
+CREATE OR REPLACE TRIGGER trg_check_salary_limit
+BEFORE INSERT OR UPDATE ON EMP
+FOR EACH ROW
+BEGIN
+  IF :NEW.salary > 50000 THEN
+    RAISE_APPLICATION_ERROR(-20002, 'Salary cannot exceed Rs. 50000.');
+  END IF;
+END;
+/
